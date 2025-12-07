@@ -1,25 +1,42 @@
 import { Personagem } from "./personagem";
+import { Acao } from "./acao";
 
 export class Arqueiro extends Personagem {
-    private _ataqueMultiplo: number;
+    protected _ataqueMultiplo: number;
 
-    constructor(id: number, nome: string, ataque: number, vida: number, ataqueMultiplo: number) {
-        super(id, nome, ataque, vida);
+    constructor(id: number, nome: string, ataque: number, ataqueMultiplo: number) {
+        super(id, nome, ataque);
         this._ataqueMultiplo = ataqueMultiplo;
     }
 
-    public obterNomeAtaque(): string {
-        return "disparou flechas em";
-    }
+    
+    atacar(alvo: Personagem): Acao {
+        if(!this.estaVivo()){
+        throw new Error("O personagem foi de Vasco. Não é possível fazer um ataque")
+            }
+        if(this._id == alvo.id){
+        throw new Error("O personagem não pode atacar a si mesmo!")
+            }
 
-    public calcularDano(alvo: Personagem): number {
-        let chance = Math.random();
-        
-        if (chance < 0.5) {
-            return this.ataque * this._ataqueMultiplo;
-        } else {
+        let qtdDano = this._ataque;
 
-            return this.ataque;
+        if(Math.random() > 0.5){
+            qtdDano *= this._ataqueMultiplo
+        }
+
+        alvo.receberDano(qtdDano);
+    
+        let acao = { id: this._id,
+            origem: this,
+            alvo: alvo,
+            descricao: "Ataque executado",
+            valorDano: qtdDano,
+            dataHora: new Date()
+        } as Acao;
+    
+        this.registrarAcao(acao);
+    
+        return acao;
         }
     }
-}
+    
