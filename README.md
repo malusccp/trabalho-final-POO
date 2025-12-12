@@ -38,7 +38,7 @@ O sistema conta com um menu interativo robusto que permite:
 
 Cada classe possui um comportamento único herdado da classe base `Personagem`:
 
-| Classes |
+| Classe | Mecânica Especial (Polimorfismo) |
 | :--- | :--- |
 | **🛡️ Guerreiro** | **Fúria:** Ganha +30% de ataque quando sua vida cai para menos de 30%. |
 | **🔮 Mago** | **Ataque Arcano:** Ignora defesa do oponente, mas sofre dano colateral (custo de mana/vida) ao atacar. |
@@ -52,4 +52,8 @@ Cada classe possui um comportamento único herdado da classe base `Personagem`:
 - **Bibliotecas:** - `prompt-sync` (Entrada de dados)
   - `fs` (File System para salvar JSON)
 
+## 📦 Como Rodar o Projeto
 
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/SEU-USUARIO/ely-minator-rpg.git](https://github.com/SEU-USUARIO/ely-minator-rpg.git)
