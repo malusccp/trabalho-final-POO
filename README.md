@@ -1,23 +1,54 @@
-# 🛡️ RPG Battle System (POO - IFPI)
+# ⚔️ Ely-minator: The Miranda Protocol!
 
-Trabalho final da disciplina de **Programação Orientada a Objetos** do curso de ADS no **IFPI** (Instituto Federal do Piauí).
+> "O Caos Orientado a Objetos"
 
-O projeto consiste em um sistema de batalha em turnos via terminal, onde personagens (Guerreiros, Magos, Arqueiros) lutam entre si aplicando regras específicas de dano e defesa.
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![POO](https://img.shields.io/badge/POO-Concepts-orange?style=for-the-badge)
 
-## 🚀 Tecnologias e Conceitos
-Este projeto foi desenvolvido em **TypeScript** aplicando pilares da Orientação a Objetos e boas práticas:
-- **Herança e Polimorfismo:** Classes base `Personagem` e especializações (`Guerreiro`, `Mago`, `Arqueiro`).
-- **Encapsulamento:** Proteção de atributos com `private/protected` e acesso via `getters`.
-- **Tratamento de Exceções:** Validações robustas para impedir ações ilegais (atacar morto, fogo amigo, etc.).
-- **Design Pattern:** Uso do padrão *Template Method* na lógica de ataque.
-- **Persistência:** Salvamento e leitura de dados em arquivos (JSON).
+## 📖 Sobre o Projeto
 
-## 📋 Funcionalidades
-- [x] Criação de personagens únicos.
-- [x] Sistema de turnos (Atacante vs Defensor).
-- [x] Log de batalha detalhado (Histórico de Ações).
-- [x] Regras específicas de classe:
-  - 🛡️ **Guerreiro:** Possui defesa e bônus de fúria quando vida < 30%.
-  - 🔮 **Mago:** Ignora defesa de guerreiros e dobra dano em arqueiros (custo de vida).
-  - 🏹 **Arqueiro:** Chance de ataques múltiplos.
-- [x] Interface via Console.
+Este projeto é um **RPG de Batalha em Turnos via Terminal (CLI)** desenvolvido como atividade avaliativa da disciplina de Programação Orientada a Objetos (POO) no curso de **Análise e Desenvolvimento de Sistemas (IFPI)**.
+
+O objetivo foi aplicar conceitos sólidos de POO (Herança, Polimorfismo, Encapsulamento) em um sistema divertido e funcional, capaz de simular combates, gerar logs detalhados e persistir dados.
+
+## 🚀 Funcionalidades
+
+O sistema conta com um menu interativo robusto que permite:
+
+- **👥 Gestão de Elenco:**
+  - Criação de personagens (Guerreiro, Mago, Arqueiro e Professor).
+  - Geração de times pré-definidos (Presets/Atalhos) para testes rápidos.
+  - Listagem com filtros inteligentes (Vivos/Mortos).
+  
+- **⚔️ Sistema de Combate:**
+  - **Batalha Manual:** Você escolhe quem ataca e quem defende a cada turno (PvP local).
+  - **Modo Simulação:** O computador assume o controle e realiza uma batalha automática até a morte (Auto-Battler).
+  
+- **📜 Histórico e Logs:**
+  - Geração de extrato detalhado "Turno a Turno" com status da vida pós-ação.
+  - Cálculo de MVP (Maior Dano) e Vencedor Final.
+  - **Replay Visual:** Assista novamente a batalha acontecendo passo a passo.
+
+- **💾 Persistência de Dados (JSON):**
+  - Salvar o estado atual da batalha (personagens e histórico) em arquivo.
+  - Carregar batalhas antigas para visualizar logs e estatísticas.
+
+## 🧙‍♂️ Classes e Mecânicas
+
+Cada classe possui um comportamento único herdado da classe base `Personagem`:
+
+| Classe | Mecânica Especial (Polimorfismo) |
+| :--- | :--- |
+| **🛡️ Guerreiro** | **Fúria:** Ganha +30% de ataque quando sua vida cai para menos de 30%. |
+| **🔮 Mago** | **Ataque Arcano:** Ignora defesa do oponente, mas sofre dano colateral (custo de mana/vida) ao atacar. |
+| **🏹 Arqueiro** | **Mira Letal:** Tem 50% de chance de realizar um ataque crítico (dano multiplicado) ou um ataque normal. |
+| **📚 Professor** | **Palestrinha:** A cada turno que ataca, sua Sabedoria aumenta, tornando-o progressivamente mais forte (Scaling infinito). |
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Linguagem:** TypeScript
+- **Runtime:** Node.js
+- **Bibliotecas:** - `prompt-sync` (Entrada de dados)
+  - `fs` (File System para salvar JSON)
+
