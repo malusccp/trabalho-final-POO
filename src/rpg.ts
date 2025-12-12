@@ -24,7 +24,7 @@ function main(){
 
     while (opcao !== 11) { 
         console.clear();
-        console.log("]⚔️   CRÔNICAS DE POO: O CAOS ORIENTADO  ⚔️  ");
+        console.log("⚔️   Ely-minator: The Miranda Protocol  ⚔️  ");
 
         console.log("[ 👥 PERSONAGENS ]                           ");
         console.log("1. Invocar Novo Personagem                        ");
