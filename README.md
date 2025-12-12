@@ -1,4 +1,4 @@
-# ⚔️ Ely-minator: The Miranda Protocol
+# ⚔️ Ely-minator: The Miranda Protocol!
 
 > "O Caos Orientado a Objetos"
 
@@ -51,4 +51,5 @@ Cada classe possui um comportamento único herdado da classe base `Personagem`:
 - **Runtime:** Node.js
 - **Bibliotecas:** - `prompt-sync` (Entrada de dados)
   - `fs` (File System para salvar JSON)
+
 
