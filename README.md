@@ -52,8 +52,3 @@ Cada classe possui um comportamento único herdado da classe base `Personagem`:
 - **Bibliotecas:** - `prompt-sync` (Entrada de dados)
   - `fs` (File System para salvar JSON)
 
-## 📦 Como Rodar o Projeto
-
-1. **Clone o repositório:**
-   ```bash
-   git clone [https://github.com/SEU-USUARIO/ely-minator-rpg.git](https://github.com/SEU-USUARIO/ely-minator-rpg.git)
