@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Arqueiro = void 0;
+exports.Professor = void 0;
 const personagem_1 = require("./personagem");
-class Arqueiro extends personagem_1.Personagem {
-    constructor(id, nome, ataque, ataqueMultiplo) {
+class Professor extends personagem_1.Personagem {
+    constructor(id, nome, ataque, sabedoria) {
         super(id, nome, ataque);
-        this._ataqueMultiplo = ataqueMultiplo;
+        this._sabedoria = sabedoria;
     }
     atacar(alvo) {
         if (!this.estaVivo()) {
@@ -14,18 +14,14 @@ class Arqueiro extends personagem_1.Personagem {
         if (this._id === alvo.id) {
             throw new Error("O personagem não pode atacar a si mesmo!");
         }
-        let qtdDano = this._ataque;
-        let descricaoAtaque = "disparo de flecha";
-        if (Math.random() > 0.5) {
-            qtdDano *= this._ataqueMultiplo;
-            descricaoAtaque = "ataque Múltiplo";
-        }
+        let qtdDano = this._ataque + this._sabedoria;
         alvo.receberDano(qtdDano);
+        this._sabedoria += 2;
         let acao = {
             id: this._id,
             origem: this,
             alvo: alvo,
-            descricao: descricaoAtaque,
+            descricao: "ataque de sabedoria",
             valorDano: qtdDano,
             dataHora: new Date()
         };
@@ -33,4 +29,4 @@ class Arqueiro extends personagem_1.Personagem {
         return acao;
     }
 }
-exports.Arqueiro = Arqueiro;
+exports.Professor = Professor;

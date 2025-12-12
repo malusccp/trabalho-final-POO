@@ -1,55 +1,50 @@
 import { Acao } from "./acao";
 import { Personagem } from "./personagem";
 
-export class Guerreiro extends Personagem{
-        protected _defesa: number;
+export class Guerreiro extends Personagem {
+    protected _defesa: number;
 
-    constructor(id: number, nome: string, ataque: number, defesa: number){
-        super(id, nome, ataque)
-        this._defesa = defesa
-    }
-
-    get defesa(){
-        return this._defesa
+    constructor(id: number, nome: string, ataque: number, defesa: number) {
+        super(id, nome, ataque);
+        this._defesa = defesa;
     }
 
     receberDano(valor: number): void {
-        if(valor < this._defesa || valor < this._ataque){
-            valor = 0
+        if (valor < this._ataque) {
+            valor = 0; 
+            console.log("Ataque bloqueado pela armadura!");
         }
-        else{
-            valor -= this._defesa
-        }
-
-
         super.receberDano(valor);
-
     }
-
     atacar(alvo: Personagem): Acao {
-        if(!this.estaVivo()){
-        throw new Error("O personagem foi de Vasco. Não é possível fazer um ataque")
+        if (!this.estaVivo()) {
+            throw new Error("O personagem morreu e não pode atacar.");
         }
-        if(this._id == alvo.id){
-            throw new Error("O personagem não pode atacar a si mesmo!")
+        if (this._id === alvo.id) {
+            throw new Error("Não é possível atacar a si mesmo.");
         }
-        let qtdDano = this._ataque
-        if(this._vida < 30){
-            qtdDano *= 1.3
+
+        let qtdDano = this._ataque;
+        let desc = "ataque com espada";
+
+        if (this._vida < 30) {
+            qtdDano = Math.floor(qtdDano * 1.3);
+            desc += " (FÚRIA!)";
         }
 
         alvo.receberDano(qtdDano);
 
-             let acao = { id: this._id,
-                origem: this,
-                alvo: alvo,
-                descricao: "Ataque executado",
-                valorDano: qtdDano,
-                dataHora: new Date()
+        let acao = {
+            id: this._id,
+            origem: this,
+            alvo: alvo,
+            descricao: desc,
+            valorDano: qtdDano,
+            dataHora: new Date()
         } as Acao;
 
         this.registrarAcao(acao);
 
         return acao;
-            }
     }
+}

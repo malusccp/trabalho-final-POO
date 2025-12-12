@@ -1,31 +1,24 @@
-import PromptSync from "prompt-sync";
-import fs from 'fs';
-import { Batalha } from "./batalha";
-import { Guerreiro } from "./guerreiro";
-import { Mago } from "./mago";
-import { Arqueiro } from "./arqueiro";
-import { Professor } from "./professor";
-import { 
-    lerNumero, 
-    inRange, 
-    pausa, 
-    sleep, 
-    validarExistenciaPersonagens, 
-    validarExistenciaBatalha,
-    lerNomeUnico 
-} from "./utils";
-
-let input = PromptSync()
-let batalha = new Batalha()
-let idGerado = 1
-
-function main(){
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const fs_1 = __importDefault(require("fs"));
+const batalha_1 = require("./batalha");
+const guerreiro_1 = require("./guerreiro");
+const mago_1 = require("./mago");
+const arqueiro_1 = require("./arqueiro");
+const professor_1 = require("./professor");
+const utils_1 = require("./utils");
+let input = (0, prompt_sync_1.default)();
+let batalha = new batalha_1.Batalha();
+let idGerado = 1;
+function main() {
     let opcao = 0;
-
-    while (opcao !== 11) { 
+    while (opcao !== 11) {
         console.clear();
         console.log("]⚔️   CRÔNICAS DE POO: O CAOS ORIENTADO  ⚔️  ");
-
         console.log("[ 👥 PERSONAGENS ]                           ");
         console.log("1. Invocar Novo Personagem                        ");
         console.log("2. Listar Combatentes                             ");
@@ -41,87 +34,97 @@ function main(){
         console.log("9. Salvar Log em Arquivo                          ");
         console.log("10. Carregar Batalha Antiga                       ");
         console.log("11. Fugir (Sair)                                  ");
-
-        opcao = inRange("Sua escolha: ", 1, 11)
-
+        opcao = (0, utils_1.inRange)("Sua escolha: ", 1, 11);
         switch (opcao) {
-            case 1: menuAddPersonagem(); break;
-            case 2: ListarPersonagens(); break;
-            case 3: verEstatisticas(); break; 
-            case 4: realizarTurno(); break;
-            case 5: modoSimulacao(); break; 
-            case 6: verHistorico(); break; 
-            case 7: replayBatalha(); break; 
-            case 8: resumoBatalha(); break; 
-            case 9: salvarArquivo(); break; 
-            case 10: carregarArquivo(); break; 
-            case 11: console.log("Saindo..."); break;
+            case 1:
+                menuAddPersonagem();
+                break;
+            case 2:
+                ListarPersonagens();
+                break;
+            case 3:
+                verEstatisticas();
+                break;
+            case 4:
+                realizarTurno();
+                break;
+            case 5:
+                modoSimulacao();
+                break;
+            case 6:
+                verHistorico();
+                break;
+            case 7:
+                replayBatalha();
+                break;
+            case 8:
+                resumoBatalha();
+                break;
+            case 9:
+                salvarArquivo();
+                break;
+            case 10:
+                carregarArquivo();
+                break;
+            case 11:
+                console.log("Saindo...");
+                break;
         }
     }
 }
-
 function realizarTurno() {
-    if (!validarExistenciaPersonagens(batalha)) return;
-
+    if (!(0, utils_1.validarExistenciaPersonagens)(batalha))
+        return;
     while (true) {
         let vivos = batalha.listarPersonagens(2);
-
         if (vivos.length < 2) {
             console.clear();
-            console.log("⚔️ FIM DA BATALHA ⚔️")
+            console.log("⚔️ FIM DA BATALHA ⚔️");
             try {
                 let v = batalha.verificarVencedor();
                 batalha.registrarVitoria(v);
-
                 console.log(`\n🏆 Resultado Final`);
                 console.log(`✔ Vencedor: ${v.nome} – ${v.constructor.name}, sobrevivendo com ${Math.floor(v.vida)} de vida`);
-            } catch (e) {
+            }
+            catch (e) {
                 console.log("Resultado: Todos morreram ou empate.");
             }
-            pausa();
-            break; 
+            (0, utils_1.pausa)();
+            break;
         }
-
         console.clear();
         console.log("⚔️  MODO BATALHA ⚔️ ");
-        
         console.log("COMBATENTES VIVOS:");
         vivos.forEach(p => {
             console.log(`[ID: ${p.id}] ${p.nome.padEnd(10)} | ❤️  ${Math.floor(p.vida)}`);
         });
         console.log("------------------------------------------");
-
-        let idAtk = lerNumero("🗡️  ID Atacante: ");
-        if (idAtk === 0) break; 
-
-        let idDef = lerNumero("🛡️  ID Alvo:     ");
-        if (idDef === 0) break; 
-
+        let idAtk = (0, utils_1.lerNumero)("🗡️  ID Atacante: ");
+        if (idAtk === 0)
+            break;
+        let idDef = (0, utils_1.lerNumero)("🛡️  ID Alvo:     ");
+        if (idDef === 0)
+            break;
         try {
             batalha.turno(idAtk, idDef);
-            
             let logs = batalha.listarExtrato();
             console.log("\n✅ AÇÃO REALIZADA:");
             console.log(logs[logs.length - 1]);
-            
             console.log("\n(Próximo turno em 3 segundos...)");
-            sleep(3000); 
-
-        } catch (e: any) {
+            (0, utils_1.sleep)(3000);
+        }
+        catch (e) {
             console.log(`\n❌ Erro: ${e.message}`);
-            pausa(); 
+            (0, utils_1.pausa)();
         }
     }
 }
-
-function menuAddPersonagem(): void {
+function menuAddPersonagem() {
     console.clear();
     console.log("🧙‍♂️  MENU DE CRIAÇÃO DE PERSONAGEM 🧙‍♂️");
     console.log("  1. Criar Personagem Manualmente    ");
     console.log("  2. Gerar time pré-definido         ");
-
-    let modo = inRange("👉 Escolha uma opção (1 ou 2): ", 1, 2);
-
+    let modo = (0, utils_1.inRange)("👉 Escolha uma opção (1 ou 2): ", 1, 2);
     if (modo === 1) {
         console.clear();
         console.log("           🧙‍♂️  CLASSES DOS COMBATENTES    🧙‍♂️             ");
@@ -134,41 +137,39 @@ function menuAddPersonagem(): void {
         console.log("   ↳ Passiva: Chance de causar Dano Crítico baseado na distância");
         console.log("4. 📚  PROFESSOR (O Mestre do Tempo)                       ");
         console.log("   ↳ Passiva: Fica mais forte a cada turno ensinando uma lição");
-
-        let personagem = inRange("Personagem: ", 1, 4);
-        
-        let nome = lerNomeUnico("Nome: ", batalha);
-        
-        let ataque = lerNumero("Ataque: ");
+        let personagem = (0, utils_1.inRange)("Personagem: ", 1, 4);
+        let nome = (0, utils_1.lerNomeUnico)("Nome: ", batalha);
+        let ataque = (0, utils_1.lerNumero)("Ataque: ");
         let novoPersonagem;
-
         try {
             if (personagem === 1) {
-                let def = lerNumero("Defesa: ");
-                novoPersonagem = new Guerreiro(idGerado, nome, ataque, def);
-            } else if (personagem === 2) {
-                novoPersonagem = new Mago(idGerado, nome, ataque);
-            } else if (personagem === 3) {
-                let ataqueCritico = lerNumero("Ataque Múltiplo: ");
-                novoPersonagem = new Arqueiro(idGerado, nome, ataque, ataqueCritico);
-            } else {
-                let sab = lerNumero("Sabedoria: ");
-                novoPersonagem = new Professor(idGerado, nome, ataque, sab);
+                let def = (0, utils_1.lerNumero)("Defesa: ");
+                novoPersonagem = new guerreiro_1.Guerreiro(idGerado, nome, ataque, def);
             }
-
+            else if (personagem === 2) {
+                novoPersonagem = new mago_1.Mago(idGerado, nome, ataque);
+            }
+            else if (personagem === 3) {
+                let ataqueCritico = (0, utils_1.lerNumero)("Ataque Múltiplo: ");
+                novoPersonagem = new arqueiro_1.Arqueiro(idGerado, nome, ataque, ataqueCritico);
+            }
+            else {
+                let sab = (0, utils_1.lerNumero)("Sabedoria: ");
+                novoPersonagem = new professor_1.Professor(idGerado, nome, ataque, sab);
+            }
             if (novoPersonagem) {
                 batalha.adicionarPersonagem(novoPersonagem);
                 console.log(`✅ ${nome} invocado com sucesso! (ID: ${idGerado})`);
                 idGerado++;
-                pausa();
+                (0, utils_1.pausa)();
             }
-
-        } catch (e: any) {
+        }
+        catch (e) {
             console.log(`❌ Erro: ${e.message}`);
-            pausa();
+            (0, utils_1.pausa)();
             menuAddPersonagem();
         }
-    } 
+    }
     else if (modo === 2) {
         console.clear();
         console.log("╔══════════════════════════════════════╗");
@@ -178,131 +179,106 @@ function menuAddPersonagem(): void {
         console.log("║ 2. Time Angra                        ║");
         console.log("║ 3. Duelo de Magos                    ║");
         console.log("╚══════════════════════════════════════╝");
-
-        let op = inRange("Escolha um preset: ", 1, 3);
-
+        let op = (0, utils_1.inRange)("Escolha um preset: ", 1, 3);
         try {
             if (op === 1) {
-                batalha.adicionarPersonagem(new Professor(idGerado++, "Ely", 25, 15));
-                batalha.adicionarPersonagem(new Mago(idGerado++, "Rogério", 30));
-                batalha.adicionarPersonagem(new Arqueiro(idGerado++, "Ricardo", 15, 3));
+                batalha.adicionarPersonagem(new professor_1.Professor(idGerado++, "Ely", 25, 15));
+                batalha.adicionarPersonagem(new mago_1.Mago(idGerado++, "Rogério", 30));
+                batalha.adicionarPersonagem(new arqueiro_1.Arqueiro(idGerado++, "Ricardo", 15, 3));
                 console.log("\n✅ Time Épico invocado com sucesso!");
-            } 
+            }
             else if (op === 2) {
-                batalha.adicionarPersonagem(new Guerreiro(idGerado++, "Edu Falaschi", 18, 5));
-                batalha.adicionarPersonagem(new Guerreiro(idGerado++, "Andre Matos", 12, 10));
-                batalha.adicionarPersonagem(new Arqueiro(idGerado++, "Fabio Lione", 10, 2));
+                batalha.adicionarPersonagem(new guerreiro_1.Guerreiro(idGerado++, "Edu Falaschi", 18, 5));
+                batalha.adicionarPersonagem(new guerreiro_1.Guerreiro(idGerado++, "Andre Matos", 12, 10));
+                batalha.adicionarPersonagem(new arqueiro_1.Arqueiro(idGerado++, "Fabio Lione", 10, 2));
                 console.log("\n✅ Time Angra invocado com sucesso!");
             }
             else if (op === 3) {
-                batalha.adicionarPersonagem(new Mago(idGerado++, "Harry", 25));
-                batalha.adicionarPersonagem(new Mago(idGerado++, "Voldemort", 28));
+                batalha.adicionarPersonagem(new mago_1.Mago(idGerado++, "Harry", 25));
+                batalha.adicionarPersonagem(new mago_1.Mago(idGerado++, "Voldemort", 28));
                 console.log("\n✅ Duelistas prontos para o combate!");
             }
-            pausa();
-
-        } catch (e: any) {
+            (0, utils_1.pausa)();
+        }
+        catch (e) {
             console.log(`❌ Erro ao gerar atalho: ${e.message}`);
-            pausa();
+            (0, utils_1.pausa)();
         }
     }
 }
-
 function ListarPersonagens() {
     if (batalha.listarPersonagens().length === 0) {
         console.log("\nNenhum personagem cadastrado ainda.");
-        pausa();
+        (0, utils_1.pausa)();
         return;
     }
-
     console.clear();
     console.log("📜  LISTAGEM DOS COMBATENTES  📜  ");
     console.log("1. Ver Todos                        ");
     console.log("2. Apenas Vivos   ");
     console.log("3. Apenas Mortos");
-    
-    let opcao = inRange("👉 Escolha o filtro: ", 1, 3);
-    
+    let opcao = (0, utils_1.inRange)("👉 Escolha o filtro: ", 1, 3);
     let lista = batalha.listarPersonagens(opcao);
-
     console.log("ID  | CLASSE      | NOME           | VIDA       | ATAQUE");
-
     if (lista.length === 0) {
         console.log("   (Nenhum personagem encontrado neste filtro)");
-    } else {
+    }
+    else {
         lista.forEach(p => {
-            let classe = p.constructor.name.padEnd(11, ' '); 
+            let classe = p.constructor.name.padEnd(11, ' ');
             let nome = p.nome.padEnd(14, ' ');
             let ataque = p.ataque.toString().padEnd(6, ' ');
-            
-            let statusVida = p.estaVivo() 
-                ? `❤️  ${p.vida.toFixed(1)}` 
+            let statusVida = p.estaVivo()
+                ? `❤️  ${p.vida.toFixed(1)}`
                 : `💀  MORTO`;
-
             console.log(`${p.id.toString().padEnd(3, ' ')} | ${classe} | ${nome} | ${statusVida.padEnd(10, ' ')} | ⚔️  ${ataque}`);
         });
     }
     console.log("-----------------------------------------------------------------");
-    
-    pausa();
+    (0, utils_1.pausa)();
 }
-
 function verEstatisticas() {
     if (batalha.listarPersonagens().length === 0) {
         console.log("Adicione os personagens primeiro.");
-        pausa();
+        (0, utils_1.pausa)();
         return;
     }
     if (batalha.listarAcoes().length === 0) {
         console.log("⚠️  A batalha ainda não começou! Nenhuma ação registrada.");
-        pausa();
+        (0, utils_1.pausa)();
         return;
     }
-
     console.clear();
-
     console.log("📊  ESTATÍSTICAS DAS BATALHAS ");
     batalha.listarPersonagens().forEach(p => {
         console.log(`[ID: ${p.id}] ${p.nome}`);
     });
     console.log("----------------------------------------");
-
-    let id = lerNumero("Digite o ID do personagem para ver a ficha: ");
-    
+    let id = (0, utils_1.lerNumero)("Digite o ID do personagem para ver a ficha: ");
     let personagem = batalha.consultarPersonagemPorId(id);
-
     if (!personagem) {
         console.log("❌ Personagem não encontrado!");
-        pausa();
+        (0, utils_1.pausa)();
         return;
     }
-
     let acoes = batalha.listarAcoes();
-    
     let danoCausado = acoes
         .filter(a => a.origem.id === id)
         .reduce((soma, a) => soma + a.valorDano, 0);
-
     let danoRecebido = acoes
         .filter(a => a.alvo.id === id)
         .reduce((soma, a) => soma + a.valorDano, 0);
-
     let abates = 0;
-    
     let todosMortos = batalha.listarPersonagens(3);
-    
     todosMortos.forEach(morto => {
         let acoesContraMorto = acoes.filter(a => a.alvo.id === morto.id);
-        
         if (acoesContraMorto.length > 0) {
             let ultimoGolpe = acoesContraMorto[acoesContraMorto.length - 1];
-            
             if (ultimoGolpe && ultimoGolpe.origem.id === id) {
                 abates++;
             }
         }
     });
-
     console.clear();
     console.log("╔══════════════════════════════════════════════════╗");
     console.log(`║ 👤 FICHA TÉCNICA: ${personagem.nome.toUpperCase().padEnd(30, ' ')} ║`);
@@ -310,113 +286,93 @@ function verEstatisticas() {
     console.log(`║ 🗡️  Dano Total Causado:  ${danoCausado.toFixed(1).padEnd(23, ' ')} ║`);
     console.log(`║ 🛡️  Dano Total Recebido: ${danoRecebido.toFixed(1).padEnd(23, ' ')} ║`);
     console.log(`║ ☠️  Abates              :      ${abates.toString().padEnd(23, ' ')} ║`);
-    
-    let statusTexto = personagem.estaVivo() 
-        ? `VIVO (${personagem.vida.toFixed(1)} HP)` 
+    let statusTexto = personagem.estaVivo()
+        ? `VIVO (${personagem.vida.toFixed(1)} HP)`
         : "MORTO 💀";
-        
     console.log(`║ ❤️  Status Atual:        ${statusTexto.padEnd(23, ' ')} ║`);
     console.log("╚══════════════════════════════════════════════════╝");
-
-    pausa();
+    (0, utils_1.pausa)();
 }
-
 function verHistorico() {
-    if (!validarExistenciaBatalha(batalha)) return;
-
+    if (!(0, utils_1.validarExistenciaBatalha)(batalha))
+        return;
     console.clear();
     console.log("=== EXTRATO DA BATALHA ===");
     console.log("status = vivo");
     console.log("status = morto");
     console.log("");
-
     let logCompleto = batalha.listarExtrato();
-
     logCompleto.forEach(blocoDeTexto => {
         console.log(blocoDeTexto);
         console.log("");
     });
-    
-    pausa();
+    (0, utils_1.pausa)();
 }
-
 function replayBatalha() {
-    if (!validarExistenciaBatalha(batalha)) return;
-
+    if (!(0, utils_1.validarExistenciaBatalha)(batalha))
+        return;
     console.clear();
     console.log("🎬 REPLAY DA BATALHA...");
-    sleep(1500);
-
+    (0, utils_1.sleep)(1500);
     let acoes = batalha.listarAcoes();
-    
     for (let i = 0; i < acoes.length; i++) {
         let acao = acoes[i];
-        if (!acao) continue;
+        if (!acao)
+            continue;
         console.clear();
         console.log(`\n🔴 TURNO ${i + 1}/${acoes.length}`);
         console.log("----------------------------------------");
         console.log(`⚔️  ATACANTE: ${acao.origem.nome}`);
         console.log(`🛡️  ALVO:     ${acao.alvo.nome}`);
         console.log("----------------------------------------");
-        
         console.log("... Preparando ataque ...");
-        sleep(800);
-        
+        (0, utils_1.sleep)(800);
         console.log(`💥 ${acao.descricao.toUpperCase()}!`);
         console.log(`🩸 DANO APLICADO: ${acao.valorDano.toFixed(1)}`);
-        
-        sleep(1500);
+        (0, utils_1.sleep)(1500);
     }
-
     console.log("\n🛑 REPLAY FINALIZADO.");
-    pausa();
+    (0, utils_1.pausa)();
 }
-
 function resumoBatalha() {
-    if (!validarExistenciaBatalha(batalha)) return;
-
+    if (!(0, utils_1.validarExistenciaBatalha)(batalha))
+        return;
     console.clear();
     console.log("╔══════════════════════════════════════╗");
     console.log("║      🏆  RELATÓRIO PÓS-GUERRA    🏆  ║");
     console.log("╚══════════════════════════════════════╝");
-
     let maiorDano = 0;
     let mvpNome = "Ninguém";
-    
     batalha.listarPersonagens().forEach(p => {
         let total = batalha.listarAcoes()
             .filter(a => a.origem.id === p.id)
             .reduce((s, a) => s + a.valorDano, 0);
-        
         if (total > maiorDano) {
             maiorDano = total;
             mvpNome = p.nome;
         }
     });
-
     console.log(`\n🔢 Total de Turnos:  ${batalha.listarAcoes().length}`);
     console.log(`💪 MVP (Maior Dano): ${mvpNome} (Total: ${maiorDano.toFixed(1)})`);
-    
     try {
         let winner = batalha.verificarVencedor();
         console.log(`👑 VENCEDOR FINAL:   ${winner.nome} (HP Restante: ${winner.vida.toFixed(1)})`);
-    } catch (e) {
+    }
+    catch (e) {
         console.log("👑 VENCEDOR FINAL:   Indefinido (Batalha em andamento ou Empate)");
     }
-    
-    pausa();
+    (0, utils_1.pausa)();
 }
-
 function salvarArquivo() {
-    if (!validarExistenciaBatalha(batalha)) return;
-
+    if (!(0, utils_1.validarExistenciaBatalha)(batalha))
+        return;
     try {
         let nomeVencedor = "Indefinido (Batalha em andamento ou Empate)";
         try {
             const v = batalha.verificarVencedor();
             nomeVencedor = `${v.nome} (${v.constructor.name})`;
-        } catch (e) {}
-
+        }
+        catch (e) { }
         let personagens = batalha.listarPersonagens().map(p => {
             return {
                 id: p.id,
@@ -427,10 +383,9 @@ function salvarArquivo() {
                 status: p.estaVivo() ? "Vivo" : "Morto"
             };
         });
-
         let historico = batalha.listarAcoes().map(acao => {
             return {
-                turno: acao.id, 
+                turno: acao.id,
                 origem: acao.origem.nome,
                 alvo: acao.alvo.nome,
                 descricao: acao.descricao,
@@ -438,7 +393,6 @@ function salvarArquivo() {
                 data: acao.dataHora
             };
         });
-
         const dados = {
             meta: {
                 dataGravacao: new Date(),
@@ -449,112 +403,91 @@ function salvarArquivo() {
             historico: historico,
             logTexto: batalha.listarExtrato()
         };
-
-        fs.writeFileSync('log_batalha.json', JSON.stringify(dados, null, 2));
-        
+        fs_1.default.writeFileSync('log_batalha.json', JSON.stringify(dados, null, 2));
         console.log("\n💾 Arquivo 'log_batalha.json' salvo com sucesso!");
         console.log("   (Inclui status final, vencedor e histórico completo)");
-
-    } catch (e: any) {
+    }
+    catch (e) {
         console.log("\n❌ Erro ao salvar arquivo: " + e.message);
     }
-    pausa();
+    (0, utils_1.pausa)();
 }
-
-
 function carregarArquivo() {
     try {
-        if (!fs.existsSync('log_batalha.json')) {
+        if (!fs_1.default.existsSync('log_batalha.json')) {
             console.log("\n❌ Nenhuma gravação encontrada (log_batalha.json não existe).");
-            pausa();
+            (0, utils_1.pausa)();
             return;
         }
-
-        let arquivo = fs.readFileSync('log_batalha.json', 'utf-8');
+        let arquivo = fs_1.default.readFileSync('log_batalha.json', 'utf-8');
         let json = JSON.parse(arquivo);
-
         console.clear();
         console.log("╔════════════════════════════════════════════════════╗");
         console.log("║         📂  REGISTRO DE BATALHA ANTIGA  📂         ║");
         console.log("╚════════════════════════════════════════════════════╝");
-        
         console.log(`📅 Data:      ${new Date(json.meta.dataGravacao).toLocaleString()}`);
         console.log(`⚔️  Turnos:    ${json.meta.totalTurnos}`);
         console.log(`🏆 Resultado: ${json.meta.resultadoFinal}`);
         console.log("------------------------------------------------------");
-        
         console.log("\n👥 COMBATENTES:");
-        json.personagens.forEach((p: any) => {
+        json.personagens.forEach((p) => {
             let icone = p.status === "Vivo" ? "❤️" : "💀";
             console.log(`   [${p.classe}] ${p.nome} - ${icone} ${Math.floor(p.vida)} HP`);
         });
-
         if (json.logTexto && json.logTexto.length > 0) {
-            json.logTexto.forEach((bloco: string) => {
+            json.logTexto.forEach((bloco) => {
                 console.log(bloco);
                 console.log("-----------------------");
             });
         }
-
-    } catch (e: any) {
+    }
+    catch (e) {
         console.log("\n❌ Erro ao ler ou processar o arquivo: " + e.message);
     }
-    pausa();
+    (0, utils_1.pausa)();
 }
-
 function modoSimulacao() {
-    if (!validarExistenciaPersonagens(batalha)) return;
-
+    if (!(0, utils_1.validarExistenciaPersonagens)(batalha))
+        return;
     let vivos = batalha.listarPersonagens(2);
-
     if (vivos.length < 2) {
         console.log("Necessita-se de ao menos 2 combatentes vivos");
-        pausa();
+        (0, utils_1.pausa)();
         return;
     }
-
     console.clear();
     console.log("Iniciando sua batalha automática...");
     console.log("-----------------------------------");
-    sleep(1000);
-
+    (0, utils_1.sleep)(1000);
     while (vivos.length > 1) {
         let atacante = vivos[Math.floor(Math.random() * vivos.length)];
-        
         let alvos = vivos.filter(p => p.id !== atacante.id);
         let defensor = alvos[Math.floor(Math.random() * alvos.length)];
-
-        if (!atacante || !defensor) break;
-
+        if (!atacante || !defensor)
+            break;
         try {
             batalha.turno(atacante.id, defensor.id);
-
             let logs = batalha.listarExtrato();
             let ultimoLog = logs[logs.length - 1];
-            
             console.log(ultimoLog);
             console.log("-----------------------------------");
-
-            sleep(1500); 
-            
+            (0, utils_1.sleep)(1500);
             vivos = batalha.listarPersonagens(2);
-
-        } catch (error: any) {
+        }
+        catch (error) {
             console.log("Erro na simulação: " + error.message);
         }
     }
-
     console.log("\n🏁 A SIMULAÇÃO TERMINOU!");
     try {
         let v = batalha.verificarVencedor();
         batalha.registrarVitoria(v);
-        
         console.log(`🏆 Resultado Final`);
         console.log(`✔ Vencedor: ${v.nome} – ${v.constructor.name}, sobrevivendo com ${Math.floor(v.vida)} de vida`);
-    } catch (e) { 
-        console.log("Houve um empate ou todos morreram."); 
     }
-    
-    pausa();
+    catch (e) {
+        console.log("Houve um empate ou todos morreram.");
+    }
+    (0, utils_1.pausa)();
 }
-main()
+main();

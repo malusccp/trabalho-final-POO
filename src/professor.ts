@@ -10,34 +10,29 @@ export class Professor extends Personagem {
     }
 
     atacar(alvo: Personagem): Acao {
-    
         if (!this.estaVivo()) {
             throw new Error("O personagem foi de Vasco. Não é possível fazer um ataque");
         }
-        if (this._id == alvo.id) {
+        if (this._id === alvo.id) {
             throw new Error("O personagem não pode atacar a si mesmo!");
         }
 
-      
         let qtdDano = this._ataque + this._sabedoria;
 
-     
         alvo.receberDano(qtdDano);
 
-      
+        this._sabedoria += 2;
+
         let acao = {
             id: this._id,
             origem: this,
             alvo: alvo,
-            descricao: "Aula ministrada: O conhecimento dói",
+            descricao: "ataque de sabedoria",
             valorDano: qtdDano,
             dataHora: new Date()
         } as Acao;
 
         this.registrarAcao(acao);
-
-        
-        this._sabedoria += 2;
 
         return acao;
     }

@@ -2,11 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Acao = void 0;
 class Acao {
-    id;
-    origem;
-    alvo;
-    descrição;
-    valorDano;
-    dataHora;
+    constructor(id, origem, alvo, descricao, valorDano, dataHora) {
+        this.id = id;
+        this.origem = origem;
+        this.alvo = alvo;
+        this.descricao = descricao;
+        this.valorDano = valorDano;
+        this.dataHora = dataHora;
+    }
 }
 exports.Acao = Acao;

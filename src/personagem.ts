@@ -32,6 +32,14 @@ export class Personagem{
         return this._nome
     }
 
+    get vida(){
+        return this._vida
+    }
+
+    get ataque(){
+        return this._ataque
+    }
+
     estaVivo(): boolean{
         return this._vida > 0;
     }

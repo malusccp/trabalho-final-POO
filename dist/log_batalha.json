@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "dataGravacao": "2025-12-11T13:52:23.802Z",
+    "totalTurnos": 5,
+    "resultadoFinal": "Voldemort (Mago)"
+  },
+  "personagens": [
+    {
+      "id": 1,
+      "nome": "Harry",
+      "classe": "Mago",
+      "vida": 0,
+      "ataque": 25,
+      "status": "Morto"
+    },
+    {
+      "id": 2,
+      "nome": "Voldemort",
+      "classe": "Mago",
+      "vida": 35,
+      "ataque": 28,
+      "status": "Vivo"
+    }
+  ],
+  "historico": [
+    {
+      "turno": 2,
+      "origem": "Voldemort",
+      "alvo": "Harry",
+      "descricao": "ataque mágico (Custo: 10 HP)",
+      "dano": 28,
+      "data": "2025-12-11T13:51:21.977Z"
+    },
+    {
+      "turno": 2,
+      "origem": "Voldemort",
+      "alvo": "Harry",
+      "descricao": "ataque mágico (Custo: 10 HP)",
+      "dano": 28,
+      "data": "2025-12-11T13:51:23.477Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Harry",
+      "alvo": "Voldemort",
+      "descricao": "ataque mágico (Custo: 10 HP)",
+      "dano": 25,
+      "data": "2025-12-11T13:51:24.977Z"
+    },
+    {
+      "turno": 2,
+      "origem": "Voldemort",
+      "alvo": "Harry",
+      "descricao": "ataque mágico (Custo: 10 HP)",
+      "dano": 28,
+      "data": "2025-12-11T13:51:26.477Z"
+    },
+    {
+      "turno": 2,
+      "origem": "Voldemort",
+      "alvo": "Harry",
+      "descricao": "ataque mágico (Custo: 10 HP)",
+      "dano": 28,
+      "data": "2025-12-11T13:51:27.977Z"
+    }
+  ],
+  "logTexto": [
+    "Ação 1\nVoldemort executa ataque mágico (Custo: 10 HP) em Harry.\nDano: 28\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Harry: 72 vida \n• Voldemort: 90 vida \n",
+    "Ação 2\nVoldemort executa ataque mágico (Custo: 10 HP) em Harry.\nDano: 28\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Harry: 44 vida \n• Voldemort: 80 vida \n",
+    "Ação 3\nHarry executa ataque mágico (Custo: 10 HP) em Voldemort.\nDano: 25\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Harry: 34 vida \n• Voldemort: 55 vida \n",
+    "Ação 4\nVoldemort executa ataque mágico (Custo: 10 HP) em Harry.\nDano: 28\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Harry: 6 vida \n• Voldemort: 45 vida \n",
+    "Ação 5\nVoldemort executa ataque mágico (Custo: 10 HP) em Harry.\nDano: 28\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Harry: 0 vida morto(a)\n• Voldemort: 35 vida \n"
+  ]
+}
