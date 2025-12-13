@@ -14,10 +14,10 @@ const prompt_sync_1 = __importDefault(require("prompt-sync"));
 let input = (0, prompt_sync_1.default)();
 function lerNumero(mensagem) {
     let valor = NaN;
-    while (isNaN(valor) || valor <= 0) {
+    while (isNaN(valor) || valor < 0) {
         valor = Number(input(mensagem));
-        if (isNaN(valor) || valor <= 0) {
-            console.log("❌ Erro: Digite um número válido e maior que zero!");
+        if (isNaN(valor) || valor < 0) {
+            console.log("❌ Erro: Digite um número válido (positivo ou zero)!");
         }
     }
     return valor;

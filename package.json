@@ -1,0 +1,20 @@
+{
+  "name": "trabalho-final-poo",
+  "version": "1.0.0",
+  "description": "RPG em TypeScript",
+  "main": "src/rpg.ts", 
+  "scripts": {
+    "dev": "ts-node src/rpg.ts"
+  },
+  "keywords": [],
+  "author": "Maria Luiza e Matheus",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

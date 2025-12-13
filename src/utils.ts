@@ -6,11 +6,12 @@ let input = PromptSync();
 export function lerNumero(mensagem: string): number {
     let valor = NaN; 
     
-    while (isNaN(valor) || valor <= 0) {
+    
+    while (isNaN(valor) || valor < 0) {
         valor = Number(input(mensagem));
         
-        if (isNaN(valor) || valor <= 0) {
-            console.log("❌ Erro: Digite um número válido e maior que zero!");
+        if (isNaN(valor) || valor < 0) {
+            console.log("❌ Erro: Digite um número válido (positivo ou zero)!");
         }
     }
     

@@ -18,7 +18,7 @@ function main() {
     let opcao = 0;
     while (opcao !== 11) {
         console.clear();
-        console.log("⚔️   Ely-minator: The Miranda Protocol  ⚔️  ");
+        console.log("⚔️   Ely-minator: The Miranda Protocol: O CAOS ORIENTADO  ⚔️  ");
         console.log("[ 👥 PERSONAGENS ]                           ");
         console.log("1. Invocar Novo Personagem                        ");
         console.log("2. Listar Combatentes                             ");
@@ -75,6 +75,12 @@ function main() {
 function realizarTurno() {
     if (!(0, utils_1.validarExistenciaPersonagens)(batalha))
         return;
+    let verificacaoInicial = batalha.listarPersonagens(2);
+    if (verificacaoInicial.length < 2) {
+        console.log("⚠️  Impossível iniciar batalha: É necessário no mínimo 2 combatentes vivos.");
+        (0, utils_1.pausa)();
+        return;
+    }
     while (true) {
         let vivos = batalha.listarPersonagens(2);
         if (vivos.length < 2) {
@@ -94,17 +100,28 @@ function realizarTurno() {
         }
         console.clear();
         console.log("⚔️  MODO BATALHA ⚔️ ");
+        console.log("(Digite 0 no ID para voltar ao menu)\n");
         console.log("COMBATENTES VIVOS:");
         vivos.forEach(p => {
             console.log(`[ID: ${p.id}] ${p.nome.padEnd(10)} | ❤️  ${Math.floor(p.vida)}`);
         });
         console.log("------------------------------------------");
-        let idAtk = (0, utils_1.lerNumero)("🗡️  ID Atacante: ");
-        if (idAtk === 0)
+        let rawAtk = input("🗡️  ID Atacante: ");
+        if (rawAtk === "0") {
             break;
-        let idDef = (0, utils_1.lerNumero)("🛡️  ID Alvo:     ");
-        if (idDef === 0)
+        }
+        let idAtk = Number(rawAtk);
+        if (isNaN(idAtk) || rawAtk === "") {
+            continue;
+        }
+        let rawDef = input("🛡️  ID Alvo:     ");
+        if (rawDef === "0") {
             break;
+        }
+        let idDef = Number(rawDef);
+        if (isNaN(idDef) || rawDef === "") {
+            continue;
+        }
         try {
             batalha.turno(idAtk, idDef);
             let logs = batalha.listarExtrato();
@@ -451,7 +468,7 @@ function modoSimulacao() {
         return;
     let vivos = batalha.listarPersonagens(2);
     if (vivos.length < 2) {
-        console.log("Necessita-se de ao menos 2 combatentes vivos");
+        console.log("⚠️  Impossível iniciar simulação: É necessário no mínimo 2 combatentes vivos.");
         (0, utils_1.pausa)();
         return;
     }
