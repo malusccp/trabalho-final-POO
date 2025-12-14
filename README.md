@@ -6,6 +6,12 @@
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![POO](https://img.shields.io/badge/POO-Concepts-orange?style=for-the-badge)
 
+### 🎥 Demonstração
+Confira o funcionamento do projeto no vídeo abaixo:
+**[▶️ Clique aqui para assistir à apresentação](https://drive.google.com/drive/folders/1vPT-Rc3eMEu8JLN2K3jOtWWEdIzIc8a5?usp=sharing)**
+
+---
+
 ## 📖 Sobre o Projeto
 
 Este projeto é um **RPG de Batalha em Turnos via Terminal (CLI)** desenvolvido como atividade avaliativa da disciplina de Programação Orientada a Objetos (POO) no curso de **Análise e Desenvolvimento de Sistemas (IFPI)**.
@@ -49,6 +55,6 @@ Cada classe possui um comportamento único herdado da classe base `Personagem`:
 
 - **Linguagem:** TypeScript
 - **Runtime:** Node.js
-- **Bibliotecas:** - `prompt-sync` (Entrada de dados)
+- **Bibliotecas:**
+  - `prompt-sync` (Entrada de dados)
   - `fs` (File System para salvar JSON)
-
