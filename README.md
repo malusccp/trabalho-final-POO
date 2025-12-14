@@ -6,7 +6,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![POO](https://img.shields.io/badge/POO-Concepts-orange?style=for-the-badge)
 
-### 🎥 Demonstração
+### 🎥 Apresentação
 Confira o funcionamento do projeto no vídeo abaixo:
 **[▶️ Clique aqui para assistir à apresentação](https://drive.google.com/drive/folders/1vPT-Rc3eMEu8JLN2K3jOtWWEdIzIc8a5?usp=sharing)**
 
@@ -58,3 +58,4 @@ Cada classe possui um comportamento único herdado da classe base `Personagem`:
 - **Bibliotecas:**
   - `prompt-sync` (Entrada de dados)
   - `fs` (File System para salvar JSON)
+
