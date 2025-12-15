@@ -76,7 +76,7 @@ export class Batalha {
 
     registrarVitoria(vencedor: Personagem): void {
         let texto = `🏆 Resultado Final\n`;
-        texto += `✔ Vencedor: ${vencedor.nome} – ${vencedor.constructor.name}, sobrevivendo com ${Math.floor(vencedor.vida)} de vida`;
+        texto += `✔ Vencedor: ${vencedor.nome} ${vencedor.constructor.name}, sobrevivendo com ${Math.floor(vencedor.vida)} de vida`;
         this._logBatalha.push(texto);
     }
 

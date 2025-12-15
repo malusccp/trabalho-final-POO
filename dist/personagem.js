@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Personagem = void 0;
+const acao_1 = require("./acao");
 class Personagem {
     constructor(id, nome, ataque) {
         this._id = id;
@@ -11,9 +12,12 @@ class Personagem {
     }
     receberDano(valor) {
         this._vida -= valor;
-        if (this._vida <= 0) {
+        if (this._vida <= 0) { // Vida não pode ser negativa
             this._vida = 0;
         }
+    }
+    receberDanoMago(valor) {
+        return this.receberDano(valor);
     }
     get id() {
         return this._id;
@@ -39,13 +43,7 @@ class Personagem {
         }
         let qtdDano = this._ataque;
         alvo.receberDano(qtdDano);
-        let acao = { id: this._id,
-            origem: this,
-            alvo: alvo,
-            descricao: "Ataque executado",
-            valorDano: qtdDano,
-            dataHora: new Date()
-        };
+        let acao = new acao_1.Acao(1, this, alvo, "Ataque Executado", qtdDano, new Date());
         this.registrarAcao(acao);
         return acao;
     }
