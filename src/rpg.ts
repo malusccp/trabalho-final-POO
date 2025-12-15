@@ -81,7 +81,7 @@ function realizarTurno() {
                 batalha.registrarVitoria(v); 
 
                 console.log(`\n🏆 Resultado Final`);
-                console.log(`✔ Vencedor: ${v.nome} – ${v.constructor.name}, sobrevivendo com ${Math.floor(v.vida)} de vida`);
+                console.log(`✔ Vencedor: ${v.nome} ${v.constructor.name}, sobrevivendo com ${Math.floor(v.vida)} de vida`);
             } catch (e) {
                 console.log("Resultado: Todos morreram ou empate.");
             }
@@ -99,25 +99,25 @@ function realizarTurno() {
         });
         console.log("------------------------------------------");
 
-        let rawAtk = input("🗡️  ID Atacante: ");
+        let Atk = input("🗡️  ID Atacante: ");
         
-        if (rawAtk === "0") {
+        if (Atk === "0") {
             break; 
         }
 
-        let idAtk = Number(rawAtk);
-        if (isNaN(idAtk) || rawAtk === "") {
+        let idAtk = Number(Atk);
+        if (isNaN(idAtk) || Atk === "") {
              continue; 
         }
 
-        let rawDef = input("🛡️  ID Alvo:     ");
+        let Def = input("🛡️  ID Alvo:     ");
 
-        if (rawDef === "0") {
+        if (Def === "0") {
             break;
         }
 
-        let idDef = Number(rawDef);
-        if (isNaN(idDef) || rawDef === "") {
+        let idDef = Number(Def);
+        if (isNaN(idDef) || Def === "") {
              continue;
         }
 
