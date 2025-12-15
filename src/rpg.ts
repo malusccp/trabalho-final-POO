@@ -350,8 +350,6 @@ function verHistorico() {
 
     console.clear();
     console.log("=== EXTRATO DA BATALHA ===");
-    console.log("status = vivo");
-    console.log("status = morto");
     console.log("");
 
     let logCompleto = batalha.listarExtrato();
