@@ -24,9 +24,14 @@ export class Personagem{
         }
     }
 
-    receberDanoMago(valor: number): void{
-        return this.receberDano(valor)
+    receberDanoMago(valor: number): void {
+
+    this._vida -= valor; 
+    
+    if(this._vida <= 0){ 
+        this._vida = 0;
     }
+}
 
     get id(){
         return this._id

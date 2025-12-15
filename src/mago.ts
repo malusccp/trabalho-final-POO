@@ -21,6 +21,7 @@ export class Mago extends Personagem {
 
         if (alvo instanceof Arqueiro) {
             qtdDano *= 2;
+            alvo.receberDano(qtdDano)
         }
         else if (alvo instanceof Guerreiro){
             alvo.receberDanoMago(qtdDano)
@@ -29,9 +30,6 @@ export class Mago extends Personagem {
             alvo.receberDano(qtdDano)
         }
 
-
-
-        alvo.receberDano(qtdDano);
 
         this._vida -= 10; 
         if (this._vida < 0) this._vida = 0;

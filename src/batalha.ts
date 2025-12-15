@@ -33,16 +33,16 @@ export class Batalha {
         
         this.personagens.forEach(p => {
             let vidaExibida = Math.floor(p.vida > 0 ? p.vida : 0);
-            let statusExtra = "";
+            let status = "";
 
             if (!p.estaVivo()) {
-                statusExtra = "morto(a)"; 
+                status = "morto(a)"; 
             } 
             else if (p.constructor.name === "Guerreiro" && p.vida < 30) {
-                statusExtra = "(modo fúria ativo)";
+                status = "(modo fúria ativo)";
             }
 
-            texto += `• ${p.nome}: ${vidaExibida} vida ${statusExtra}\n`;
+            texto += `• ${p.nome}: ${vidaExibida} vida ${status}\n`;
         });
         
         return texto;

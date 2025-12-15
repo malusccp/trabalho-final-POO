@@ -17,7 +17,10 @@ class Personagem {
         }
     }
     receberDanoMago(valor) {
-        return this.receberDano(valor);
+        this._vida -= valor;
+        if (this._vida <= 0) {
+            this._vida = 0;
+        }
     }
     get id() {
         return this._id;

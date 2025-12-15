@@ -20,6 +20,7 @@ class Mago extends personagem_1.Personagem {
         let descricaoAtaque = "ataque mágico";
         if (alvo instanceof arqueiro_1.Arqueiro) {
             qtdDano *= 2;
+            alvo.receberDano(qtdDano);
         }
         else if (alvo instanceof guerreiro_1.Guerreiro) {
             alvo.receberDanoMago(qtdDano);
@@ -27,7 +28,6 @@ class Mago extends personagem_1.Personagem {
         else {
             alvo.receberDano(qtdDano);
         }
-        alvo.receberDano(qtdDano);
         this._vida -= 10;
         if (this._vida < 0)
             this._vida = 0;
