@@ -11,6 +11,9 @@ const mago_1 = require("./mago");
 const arqueiro_1 = require("./arqueiro");
 const professor_1 = require("./professor");
 const utils_1 = require("./utils");
+const cidadao_1 = require("./cidadao");
+const aneurisma_1 = require("./aneurisma");
+const sacerdote_1 = require("./sacerdote");
 let input = (0, prompt_sync_1.default)();
 let batalha = new batalha_1.Batalha();
 let idGerado = 1;
@@ -90,7 +93,7 @@ function realizarTurno() {
                 let v = batalha.verificarVencedor();
                 batalha.registrarVitoria(v);
                 console.log(`\n🏆 Resultado Final`);
-                console.log(`✔ Vencedor: ${v.nome} – ${v.constructor.name}, sobrevivendo com ${Math.floor(v.vida)} de vida`);
+                console.log(`✔ Vencedor: ${v.nome} ${v.constructor.name}, sobrevivendo com ${Math.floor(v.vida)} de vida`);
             }
             catch (e) {
                 console.log("Resultado: Todos morreram ou empate.");
@@ -106,20 +109,20 @@ function realizarTurno() {
             console.log(`[ID: ${p.id}] ${p.nome.padEnd(10)} | ❤️  ${Math.floor(p.vida)}`);
         });
         console.log("------------------------------------------");
-        let rawAtk = input("🗡️  ID Atacante: ");
-        if (rawAtk === "0") {
+        let Atk = input("🗡️  ID Atacante: ");
+        if (Atk === "0") {
             break;
         }
-        let idAtk = Number(rawAtk);
-        if (isNaN(idAtk) || rawAtk === "") {
+        let idAtk = Number(Atk);
+        if (isNaN(idAtk) || Atk === "") {
             continue;
         }
-        let rawDef = input("🛡️  ID Alvo:     ");
-        if (rawDef === "0") {
+        let Def = input("🛡️  ID Alvo:     ");
+        if (Def === "0") {
             break;
         }
-        let idDef = Number(rawDef);
-        if (isNaN(idDef) || rawDef === "") {
+        let idDef = Number(Def);
+        if (isNaN(idDef) || Def === "") {
             continue;
         }
         try {
@@ -154,25 +157,39 @@ function menuAddPersonagem() {
         console.log("   ↳ Passiva: Chance de causar Dano Crítico baseado na distância");
         console.log("4. 📚  PROFESSOR (O Mestre do Tempo)                       ");
         console.log("   ↳ Passiva: Fica mais forte a cada turno ensinando uma lição");
-        let personagem = (0, utils_1.inRange)("Personagem: ", 1, 4);
+        let personagem = (0, utils_1.inRange)("Personagem: ", 1, 7);
         let nome = (0, utils_1.lerNomeUnico)("Nome: ", batalha);
-        let ataque = (0, utils_1.lerNumero)("Ataque: ");
         let novoPersonagem;
         try {
             if (personagem === 1) {
+                let ataque = (0, utils_1.lerNumero)("Ataque: ");
                 let def = (0, utils_1.lerNumero)("Defesa: ");
                 novoPersonagem = new guerreiro_1.Guerreiro(idGerado, nome, ataque, def);
             }
             else if (personagem === 2) {
+                let ataque = (0, utils_1.lerNumero)("Ataque: ");
                 novoPersonagem = new mago_1.Mago(idGerado, nome, ataque);
             }
             else if (personagem === 3) {
+                let ataque = (0, utils_1.lerNumero)("Ataque: ");
                 let ataqueCritico = (0, utils_1.lerNumero)("Ataque Múltiplo: ");
                 novoPersonagem = new arqueiro_1.Arqueiro(idGerado, nome, ataque, ataqueCritico);
             }
-            else {
+            else if (personagem === 4) {
+                let ataque = (0, utils_1.lerNumero)("Ataque: ");
                 let sab = (0, utils_1.lerNumero)("Sabedoria: ");
                 novoPersonagem = new professor_1.Professor(idGerado, nome, ataque, sab);
+            }
+            else if (personagem === 5) {
+                novoPersonagem = new cidadao_1.Cidadao(idGerado, nome, 0);
+            }
+            else if (personagem === 6) {
+                let ataque = (0, utils_1.lerNumero)("Ataque: ");
+                novoPersonagem = new aneurisma_1.Aneurisma(idGerado, nome, ataque);
+            }
+            else {
+                let ataque = (0, utils_1.lerNumero)("Ataque: ");
+                novoPersonagem = new sacerdote_1.Sacerdote(idGerado, nome, ataque);
             }
             if (novoPersonagem) {
                 batalha.adicionarPersonagem(novoPersonagem);
@@ -315,8 +332,6 @@ function verHistorico() {
         return;
     console.clear();
     console.log("=== EXTRATO DA BATALHA ===");
-    console.log("status = vivo");
-    console.log("status = morto");
     console.log("");
     let logCompleto = batalha.listarExtrato();
     logCompleto.forEach(blocoDeTexto => {
@@ -410,7 +425,7 @@ function salvarArquivo() {
                 data: acao.dataHora
             };
         });
-        const dados = {
+        let dados = {
             meta: {
                 dataGravacao: new Date(),
                 totalTurnos: batalha.listarAcoes().length,
@@ -422,7 +437,6 @@ function salvarArquivo() {
         };
         fs_1.default.writeFileSync('log_batalha.json', JSON.stringify(dados, null, 2));
         console.log("\n💾 Arquivo 'log_batalha.json' salvo com sucesso!");
-        console.log("   (Inclui status final, vencedor e histórico completo)");
     }
     catch (e) {
         console.log("\n❌ Erro ao salvar arquivo: " + e.message);

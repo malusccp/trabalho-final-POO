@@ -2,36 +2,40 @@ import { Personagem } from "./personagem";
 import { Acao } from "./acao";
 
 export class Batalha {
-    private personagens: Personagem[] = [];
-    private acoes: Acao[] = [];
+    private _personagens: Personagem[] = [];
+    private _acoes: Acao[] = [];
     private _logBatalha: string[] = []; 
 
+    get personagens(): Personagem[]{
+        return this._personagens
+    }
+
     adicionarPersonagem(p: Personagem): void {
-        let jaExiste = this.personagens.find(pers => pers.nome === p.nome);
+        let jaExiste = this._personagens.find(pers => pers.nome === p.nome);
         if (jaExiste) {
             throw new Error("Erro! O nome escolhido já pertence a outro personagem");
         }
-        this.personagens.push(p);
+        this._personagens.push(p);
     }
 
     listarPersonagens(filtro: number = 1): Personagem[] {
         if (filtro === 2) {
-            return this.personagens.filter(p => p.estaVivo());
+            return this._personagens.filter(p => p.estaVivo());
         } 
         else if (filtro === 3) {
-            return this.personagens.filter(p => !p.estaVivo());
+            return this._personagens.filter(p => !p.estaVivo());
         }
-        return this.personagens;
+        return this._personagens;
     }
 
     consultarPersonagemPorId(id: number): Personagem | undefined {
-        return this.personagens.find(p => p.id === id);
+        return this._personagens.find(p => p.id === id);
     }
 
     private gerarStatusRodada(): string {
         let texto = "Situação após a ação:\n";
         
-        this.personagens.forEach(p => {
+        this._personagens.forEach(p => {
             let vidaExibida = Math.floor(p.vida > 0 ? p.vida : 0);
             let status = "";
 
@@ -57,9 +61,9 @@ export class Batalha {
         }
 
         let acao = atacante.atacar(defensor);
-        this.acoes.push(acao);
+        this._acoes.push(acao);
 
-        let numeroAcao = this.acoes.length;
+        let numeroAcao = this._acoes.length;
         
         let logTurno = `Ação ${numeroAcao}\n`;
         logTurno += `${atacante.nome} executa ${acao.descricao} em ${defensor.nome}.\n`;
@@ -85,7 +89,7 @@ export class Batalha {
     }
 
     listarAcoes(): Acao[] {
-        return this.acoes;
+        return this._acoes;
     }
 
     verificarVencedor(): Personagem {

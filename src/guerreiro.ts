@@ -10,8 +10,6 @@ export class Guerreiro extends Personagem {
     }
 
     receberDano(valor: number): void {
-
-       
         let danoRestante = valor - this._defesa;
 
         if (danoRestante < 0) {

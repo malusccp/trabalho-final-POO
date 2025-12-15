@@ -1,28 +1,36 @@
 {
   "meta": {
-    "dataGravacao": "2025-12-14T00:18:48.302Z",
-    "totalTurnos": 11,
+    "dataGravacao": "2025-12-15T18:26:38.703Z",
+    "totalTurnos": 22,
     "resultadoFinal": "Ely (Professor)"
   },
   "personagens": [
     {
       "id": 1,
-      "nome": "Mario",
+      "nome": "Fabio\u001b[H",
+      "classe": "Professor",
+      "vida": 0,
+      "ataque": 0,
+      "status": "Morto"
+    },
+    {
+      "id": 2,
+      "nome": "Thiago",
       "classe": "Professor",
       "vida": 0,
       "ataque": 10,
       "status": "Morto"
     },
     {
-      "id": 2,
+      "id": 3,
       "nome": "Ely",
       "classe": "Professor",
-      "vida": 43,
+      "vida": 9,
       "ataque": 25,
       "status": "Vivo"
     },
     {
-      "id": 3,
+      "id": 4,
       "nome": "Rogério",
       "classe": "Mago",
       "vida": 0,
@@ -30,7 +38,7 @@
       "status": "Morto"
     },
     {
-      "id": 4,
+      "id": 5,
       "nome": "Ricardo",
       "classe": "Arqueiro",
       "vida": 0,
@@ -40,106 +48,205 @@
   ],
   "historico": [
     {
-      "turno": 2,
+      "turno": 1,
       "origem": "Ely",
-      "alvo": "Rogério",
+      "alvo": "Fabio\u001b[H",
       "descricao": "ataque de sabedoria",
       "dano": 40,
-      "data": "2025-12-14T00:16:22.150Z"
-    },
-    {
-      "turno": 2,
-      "origem": "Ely",
-      "alvo": "Rogério",
-      "descricao": "ataque de sabedoria",
-      "dano": 42,
-      "data": "2025-12-14T00:16:53.896Z"
-    },
-    {
-      "turno": 4,
-      "origem": "Ricardo",
-      "alvo": "Rogério",
-      "descricao": "ataque Múltiplo",
-      "dano": 45,
-      "data": "2025-12-14T00:16:55.396Z"
-    },
-    {
-      "turno": 2,
-      "origem": "Ely",
-      "alvo": "Mario",
-      "descricao": "ataque de sabedoria",
-      "dano": 44,
-      "data": "2025-12-14T00:16:56.896Z"
+      "data": "2025-12-15T18:25:44.070Z"
     },
     {
       "turno": 1,
-      "origem": "Mario",
-      "alvo": "Ely",
-      "descricao": "ataque de sabedoria",
-      "dano": 12,
-      "data": "2025-12-14T00:16:58.396Z"
+      "origem": "Rogério",
+      "alvo": "Thiago",
+      "descricao": "ataque mágico",
+      "dano": 30,
+      "data": "2025-12-15T18:25:45.571Z"
     },
     {
-      "turno": 2,
+      "turno": 1,
+      "origem": "Rogério",
+      "alvo": "Ely",
+      "descricao": "ataque mágico",
+      "dano": 30,
+      "data": "2025-12-15T18:25:47.071Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Thiago",
+      "alvo": "Ricardo",
+      "descricao": "ataque de sabedoria",
+      "dano": 13,
+      "data": "2025-12-15T18:25:48.571Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Ricardo",
+      "alvo": "Thiago",
+      "descricao": "disparo de flecha",
+      "dano": 15,
+      "data": "2025-12-15T18:25:50.071Z"
+    },
+    {
+      "turno": 1,
       "origem": "Ely",
-      "alvo": "Mario",
+      "alvo": "Thiago",
+      "descricao": "ataque de sabedoria",
+      "dano": 42,
+      "data": "2025-12-15T18:25:51.571Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Rogério",
+      "alvo": "Ricardo",
+      "descricao": "ataque mágico",
+      "dano": 60,
+      "data": "2025-12-15T18:25:53.071Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Fabio\u001b[H",
+      "alvo": "Thiago",
+      "descricao": "ataque de sabedoria",
+      "dano": 0,
+      "data": "2025-12-15T18:25:54.571Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Ely",
+      "alvo": "Fabio\u001b[H",
+      "descricao": "ataque de sabedoria",
+      "dano": 44,
+      "data": "2025-12-15T18:25:56.071Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Fabio\u001b[H",
+      "alvo": "Ely",
+      "descricao": "ataque de sabedoria",
+      "dano": 2,
+      "data": "2025-12-15T18:25:57.571Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Fabio\u001b[H",
+      "alvo": "Ricardo",
+      "descricao": "ataque de sabedoria",
+      "dano": 4,
+      "data": "2025-12-15T18:25:59.071Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Ricardo",
+      "alvo": "Rogério",
+      "descricao": "ataque Múltiplo",
+      "dano": 45,
+      "data": "2025-12-15T18:26:00.571Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Fabio\u001b[H",
+      "alvo": "Ricardo",
+      "descricao": "ataque de sabedoria",
+      "dano": 6,
+      "data": "2025-12-15T18:26:02.078Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Fabio\u001b[H",
+      "alvo": "Rogério",
+      "descricao": "ataque de sabedoria",
+      "dano": 8,
+      "data": "2025-12-15T18:26:03.578Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Fabio\u001b[H",
+      "alvo": "Ricardo",
+      "descricao": "ataque de sabedoria",
+      "dano": 10,
+      "data": "2025-12-15T18:26:05.078Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Rogério",
+      "alvo": "Fabio\u001b[H",
+      "descricao": "ataque mágico",
+      "dano": 30,
+      "data": "2025-12-15T18:26:06.578Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Thiago",
+      "alvo": "Ricardo",
+      "descricao": "ataque de sabedoria",
+      "dano": 15,
+      "data": "2025-12-15T18:26:08.078Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Thiago",
+      "alvo": "Ely",
+      "descricao": "ataque de sabedoria",
+      "dano": 17,
+      "data": "2025-12-15T18:26:09.579Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Thiago",
+      "alvo": "Ely",
+      "descricao": "ataque de sabedoria",
+      "dano": 19,
+      "data": "2025-12-15T18:26:11.079Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Thiago",
+      "alvo": "Rogério",
+      "descricao": "ataque de sabedoria",
+      "dano": 21,
+      "data": "2025-12-15T18:26:12.579Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Thiago",
+      "alvo": "Ely",
+      "descricao": "ataque de sabedoria",
+      "dano": 23,
+      "data": "2025-12-15T18:26:14.079Z"
+    },
+    {
+      "turno": 1,
+      "origem": "Ely",
+      "alvo": "Thiago",
       "descricao": "ataque de sabedoria",
       "dano": 46,
-      "data": "2025-12-14T00:16:59.896Z"
-    },
-    {
-      "turno": 4,
-      "origem": "Ricardo",
-      "alvo": "Mario",
-      "descricao": "ataque Múltiplo",
-      "dano": 45,
-      "data": "2025-12-14T00:17:01.396Z"
-    },
-    {
-      "turno": 2,
-      "origem": "Ely",
-      "alvo": "Ricardo",
-      "descricao": "ataque de sabedoria",
-      "dano": 48,
-      "data": "2025-12-14T00:17:02.896Z"
-    },
-    {
-      "turno": 2,
-      "origem": "Ely",
-      "alvo": "Ricardo",
-      "descricao": "ataque de sabedoria",
-      "dano": 50,
-      "data": "2025-12-14T00:17:04.396Z"
-    },
-    {
-      "turno": 4,
-      "origem": "Ricardo",
-      "alvo": "Ely",
-      "descricao": "ataque Múltiplo",
-      "dano": 45,
-      "data": "2025-12-14T00:17:05.896Z"
-    },
-    {
-      "turno": 2,
-      "origem": "Ely",
-      "alvo": "Ricardo",
-      "descricao": "ataque de sabedoria",
-      "dano": 52,
-      "data": "2025-12-14T00:17:07.396Z"
+      "data": "2025-12-15T18:26:15.579Z"
     }
   ],
   "logTexto": [
-    "Ação 1\nEly executa ataque de sabedoria em Rogério.\nDano: 40\nSituação após a ação:\n• Mario: 100 vida \n• Ely: 100 vida \n• Rogério: 60 vida \n• Ricardo: 100 vida \n",
-    "Ação 2\nEly executa ataque de sabedoria em Rogério.\nDano: 42\nSituação após a ação:\n• Mario: 100 vida \n• Ely: 100 vida \n• Rogério: 18 vida \n• Ricardo: 100 vida \n",
-    "Ação 3\nRicardo executa ataque Múltiplo em Rogério.\nDano: 45\nSituação após a ação:\n• Mario: 100 vida \n• Ely: 100 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 100 vida \n",
-    "Ação 4\nEly executa ataque de sabedoria em Mario.\nDano: 44\nSituação após a ação:\n• Mario: 56 vida \n• Ely: 100 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 100 vida \n",
-    "Ação 5\nMario executa ataque de sabedoria em Ely.\nDano: 12\nSituação após a ação:\n• Mario: 56 vida \n• Ely: 88 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 100 vida \n",
-    "Ação 6\nEly executa ataque de sabedoria em Mario.\nDano: 46\nSituação após a ação:\n• Mario: 10 vida \n• Ely: 88 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 100 vida \n",
-    "Ação 7\nRicardo executa ataque Múltiplo em Mario.\nDano: 45\nSituação após a ação:\n• Mario: 0 vida morto(a)\n• Ely: 88 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 100 vida \n",
-    "Ação 8\nEly executa ataque de sabedoria em Ricardo.\nDano: 48\nSituação após a ação:\n• Mario: 0 vida morto(a)\n• Ely: 88 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 52 vida \n",
-    "Ação 9\nEly executa ataque de sabedoria em Ricardo.\nDano: 50\nSituação após a ação:\n• Mario: 0 vida morto(a)\n• Ely: 88 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 2 vida \n",
-    "Ação 10\nRicardo executa ataque Múltiplo em Ely.\nDano: 45\nSituação após a ação:\n• Mario: 0 vida morto(a)\n• Ely: 43 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 2 vida \n",
-    "Ação 11\nEly executa ataque de sabedoria em Ricardo.\nDano: 52\nSituação após a ação:\n• Mario: 0 vida morto(a)\n• Ely: 43 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 0 vida morto(a)\n",
-    "🏆 Resultado Final\n✔ Vencedor: Ely – Professor, sobrevivendo com 43 de vida"
+    "Ação 1\nEly executa ataque de sabedoria em Fabio\u001b[H.\nDano: 40\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 100 vida \n• Ely: 100 vida \n• Rogério: 100 vida \n• Ricardo: 100 vida \n",
+    "Ação 2\nRogério executa ataque mágico em Thiago.\nDano: 30\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 70 vida \n• Ely: 100 vida \n• Rogério: 90 vida \n• Ricardo: 100 vida \n",
+    "Ação 3\nRogério executa ataque mágico em Ely.\nDano: 30\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 70 vida \n• Ely: 70 vida \n• Rogério: 80 vida \n• Ricardo: 100 vida \n",
+    "Ação 4\nThiago executa ataque de sabedoria em Ricardo.\nDano: 13\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 70 vida \n• Ely: 70 vida \n• Rogério: 80 vida \n• Ricardo: 87 vida \n",
+    "Ação 5\nRicardo executa disparo de flecha em Thiago.\nDano: 15\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 55 vida \n• Ely: 70 vida \n• Rogério: 80 vida \n• Ricardo: 87 vida \n",
+    "Ação 6\nEly executa ataque de sabedoria em Thiago.\nDano: 42\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 13 vida \n• Ely: 70 vida \n• Rogério: 80 vida \n• Ricardo: 87 vida \n",
+    "Ação 7\nRogério executa ataque mágico em Ricardo.\nDano: 60\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 13 vida \n• Ely: 70 vida \n• Rogério: 70 vida \n• Ricardo: 27 vida \n",
+    "Ação 8\nFabio\u001b[H executa ataque de sabedoria em Thiago.\nDano: 0\nSituação após a ação:\n• Fabio\u001b[H: 60 vida \n• Thiago: 13 vida \n• Ely: 70 vida \n• Rogério: 70 vida \n• Ricardo: 27 vida \n",
+    "Ação 9\nEly executa ataque de sabedoria em Fabio\u001b[H.\nDano: 44\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 70 vida \n• Rogério: 70 vida \n• Ricardo: 27 vida \n",
+    "Ação 10\nFabio\u001b[H executa ataque de sabedoria em Ely.\nDano: 2\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 70 vida \n• Ricardo: 27 vida \n",
+    "Ação 11\nFabio\u001b[H executa ataque de sabedoria em Ricardo.\nDano: 4\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 70 vida \n• Ricardo: 23 vida \n",
+    "Ação 12\nRicardo executa ataque Múltiplo em Rogério.\nDano: 45\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 25 vida \n• Ricardo: 23 vida \n",
+    "Ação 13\nFabio\u001b[H executa ataque de sabedoria em Ricardo.\nDano: 6\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 25 vida \n• Ricardo: 17 vida \n",
+    "Ação 14\nFabio\u001b[H executa ataque de sabedoria em Rogério.\nDano: 8\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 17 vida \n• Ricardo: 17 vida \n",
+    "Ação 15\nFabio\u001b[H executa ataque de sabedoria em Ricardo.\nDano: 10\nSituação após a ação:\n• Fabio\u001b[H: 16 vida \n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 17 vida \n• Ricardo: 7 vida \n",
+    "Ação 16\nRogério executa ataque mágico em Fabio\u001b[H.\nDano: 30\nAutodano: 10 (Custo da magia)\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 7 vida \n• Ricardo: 7 vida \n",
+    "Ação 17\nThiago executa ataque de sabedoria em Ricardo.\nDano: 15\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 13 vida \n• Ely: 68 vida \n• Rogério: 7 vida \n• Ricardo: 0 vida morto(a)\n",
+    "Ação 18\nThiago executa ataque de sabedoria em Ely.\nDano: 17\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 13 vida \n• Ely: 51 vida \n• Rogério: 7 vida \n• Ricardo: 0 vida morto(a)\n",
+    "Ação 19\nThiago executa ataque de sabedoria em Ely.\nDano: 19\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 13 vida \n• Ely: 32 vida \n• Rogério: 7 vida \n• Ricardo: 0 vida morto(a)\n",
+    "Ação 20\nThiago executa ataque de sabedoria em Rogério.\nDano: 21\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 13 vida \n• Ely: 32 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 0 vida morto(a)\n",
+    "Ação 21\nThiago executa ataque de sabedoria em Ely.\nDano: 23\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 13 vida \n• Ely: 9 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 0 vida morto(a)\n",
+    "Ação 22\nEly executa ataque de sabedoria em Thiago.\nDano: 46\nSituação após a ação:\n• Fabio\u001b[H: 0 vida morto(a)\n• Thiago: 0 vida morto(a)\n• Ely: 9 vida \n• Rogério: 0 vida morto(a)\n• Ricardo: 0 vida morto(a)\n",
+    "🏆 Resultado Final\n✔ Vencedor: Ely Professor, sobrevivendo com 9 de vida"
   ]
 }

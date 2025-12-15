@@ -3,41 +3,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Batalha = void 0;
 class Batalha {
     constructor() {
-        this.personagens = [];
-        this.acoes = [];
+        this._personagens = [];
+        this._acoes = [];
         this._logBatalha = [];
     }
+    get personagens() {
+        return this._personagens;
+    }
     adicionarPersonagem(p) {
-        let jaExiste = this.personagens.find(pers => pers.nome === p.nome);
+        let jaExiste = this._personagens.find(pers => pers.nome === p.nome);
         if (jaExiste) {
             throw new Error("Erro! O nome escolhido já pertence a outro personagem");
         }
-        this.personagens.push(p);
+        this._personagens.push(p);
     }
     listarPersonagens(filtro = 1) {
         if (filtro === 2) {
-            return this.personagens.filter(p => p.estaVivo());
+            return this._personagens.filter(p => p.estaVivo());
         }
         else if (filtro === 3) {
-            return this.personagens.filter(p => !p.estaVivo());
+            return this._personagens.filter(p => !p.estaVivo());
         }
-        return this.personagens;
+        return this._personagens;
     }
     consultarPersonagemPorId(id) {
-        return this.personagens.find(p => p.id === id);
+        return this._personagens.find(p => p.id === id);
     }
     gerarStatusRodada() {
         let texto = "Situação após a ação:\n";
-        this.personagens.forEach(p => {
+        this._personagens.forEach(p => {
             let vidaExibida = Math.floor(p.vida > 0 ? p.vida : 0);
-            let statusExtra = "";
+            let status = "";
             if (!p.estaVivo()) {
-                statusExtra = "morto(a)";
+                status = "morto(a)";
             }
             else if (p.constructor.name === "Guerreiro" && p.vida < 30) {
-                statusExtra = "(modo fúria ativo)";
+                status = "(modo fúria ativo)";
             }
-            texto += `• ${p.nome}: ${vidaExibida} vida ${statusExtra}\n`;
+            texto += `• ${p.nome}: ${vidaExibida} vida ${status}\n`;
         });
         return texto;
     }
@@ -48,8 +51,8 @@ class Batalha {
             throw new Error("Personagem não encontrado.");
         }
         let acao = atacante.atacar(defensor);
-        this.acoes.push(acao);
-        let numeroAcao = this.acoes.length;
+        this._acoes.push(acao);
+        let numeroAcao = this._acoes.length;
         let logTurno = `Ação ${numeroAcao}\n`;
         logTurno += `${atacante.nome} executa ${acao.descricao} em ${defensor.nome}.\n`;
         logTurno += `Dano: ${Math.floor(acao.valorDano)}\n`;
@@ -68,7 +71,7 @@ class Batalha {
         return this._logBatalha;
     }
     listarAcoes() {
-        return this.acoes;
+        return this._acoes;
     }
     verificarVencedor() {
         let vivos = this.listarPersonagens(2);

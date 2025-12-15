@@ -14,6 +14,9 @@ import {
     validarExistenciaBatalha,
     lerNomeUnico 
 } from "./utils";
+import { Cidadao } from "./cidadao";
+import { Aneurisma } from "./aneurisma";
+import { Sacerdote } from "./sacerdote";
 
 let input = PromptSync()
 let batalha = new Batalha()
@@ -159,25 +162,40 @@ function menuAddPersonagem(): void {
         console.log("4. 📚  PROFESSOR (O Mestre do Tempo)                       ");
         console.log("   ↳ Passiva: Fica mais forte a cada turno ensinando uma lição");
 
-        let personagem = inRange("Personagem: ", 1, 4);
+        let personagem = inRange("Personagem: ", 1, 7);
         
         let nome = lerNomeUnico("Nome: ", batalha);
-        
-        let ataque = lerNumero("Ataque: ");
+    
         let novoPersonagem;
 
         try {
             if (personagem === 1) {
+                let ataque = lerNumero("Ataque: ");
                 let def = lerNumero("Defesa: ");
                 novoPersonagem = new Guerreiro(idGerado, nome, ataque, def);
             } else if (personagem === 2) {
+                let ataque = lerNumero("Ataque: ");
                 novoPersonagem = new Mago(idGerado, nome, ataque);
             } else if (personagem === 3) {
+                let ataque = lerNumero("Ataque: ");
                 let ataqueCritico = lerNumero("Ataque Múltiplo: ");
                 novoPersonagem = new Arqueiro(idGerado, nome, ataque, ataqueCritico);
-            } else {
+            } else if(personagem === 4) {
+                let ataque = lerNumero("Ataque: ");
                 let sab = lerNumero("Sabedoria: ");
                 novoPersonagem = new Professor(idGerado, nome, ataque, sab);
+            }
+            else if(personagem === 5){
+                novoPersonagem = new Cidadao(idGerado, nome, 0);
+            } else if(personagem === 6){
+                let ataque = lerNumero("Ataque: ");
+                novoPersonagem = new Aneurisma(idGerado, nome, ataque);
+                
+            } 
+            else{ 
+                let ataque = lerNumero("Ataque: ");
+                novoPersonagem = new Sacerdote(idGerado, nome, ataque);
+
             }
 
             if (novoPersonagem) {
@@ -461,7 +479,7 @@ function salvarArquivo() {
             };
         });
 
-        const dados = {
+        let dados = {
             meta: {
                 dataGravacao: new Date(),
                 totalTurnos: batalha.listarAcoes().length,
@@ -475,7 +493,6 @@ function salvarArquivo() {
         fs.writeFileSync('log_batalha.json', JSON.stringify(dados, null, 2));
         
         console.log("\n💾 Arquivo 'log_batalha.json' salvo com sucesso!");
-        console.log("   (Inclui status final, vencedor e histórico completo)");
 
     } catch (e: any) {
         console.log("\n❌ Erro ao salvar arquivo: " + e.message);
