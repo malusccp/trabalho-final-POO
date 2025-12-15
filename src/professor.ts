@@ -18,19 +18,18 @@ export class Professor extends Personagem {
         }
 
         let qtdDano = this._ataque + this._sabedoria;
-
+        let descricaoAtaque = "ataque de sabedoria"
         alvo.receberDano(qtdDano);
 
         this._sabedoria += 2;
 
-        let acao = {
-            id: this._id,
-            origem: this,
-            alvo: alvo,
-            descricao: "ataque de sabedoria",
-            valorDano: qtdDano,
-            dataHora: new Date()
-        } as Acao;
+        let acao = new Acao(
+        1,                  
+        this,              
+        alvo,               
+        descricaoAtaque,    
+        qtdDano,           
+        new Date()   );
 
         this.registrarAcao(acao);
 

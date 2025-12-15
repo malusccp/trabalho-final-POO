@@ -2,7 +2,7 @@ import { Acao } from "./acao";
 import { Personagem } from "./personagem";
 
 export class Guerreiro extends Personagem {
-    protected _defesa: number;
+    private _defesa: number;
 
     constructor(id: number, nome: string, ataque: number, defesa: number) {
         super(id, nome, ataque);
@@ -10,38 +10,49 @@ export class Guerreiro extends Personagem {
     }
 
     receberDano(valor: number): void {
-        if (valor < this._ataque) {
-            valor = 0; 
-            console.log("Ataque bloqueado pela armadura!");
+
+       
+        let danoRestante = valor - this._defesa;
+
+        if (danoRestante < 0) {
+            danoRestante = 0;
+            console.log("O ataque foi bloqueado pela defesa!");
         }
-        super.receberDano(valor);
+
+        super.receberDano(danoRestante);
     }
+
+    receberDanoMago(valor:number){
+        console.log("A defesa do Guerreiro foi ignorada pelo Mago");
+
+        super.receberDanoMago(valor);
+    }
+
     atacar(alvo: Personagem): Acao {
-        if (!this.estaVivo()) {
-            throw new Error("O personagem morreu e não pode atacar.");
+        if(!this.estaVivo()){
+        throw new Error("O personagem foi de Vasco. Não é possível fazer um ataque")
         }
-        if (this._id === alvo.id) {
-            throw new Error("Não é possível atacar a si mesmo.");
+        if(this._id == alvo.id){
+            throw new Error("O personagem não pode atacar a si mesmo!")
         }
 
         let qtdDano = this._ataque;
-        let desc = "ataque com espada";
+        let descricaoAtaque = "ataque com espada";
 
         if (this._vida < 30) {
             qtdDano = Math.floor(qtdDano * 1.3);
-            desc += " (FÚRIA!)";
+            descricaoAtaque += " (FÚRIA!)";
         }
 
         alvo.receberDano(qtdDano);
 
-        let acao = {
-            id: this._id,
-            origem: this,
-            alvo: alvo,
-            descricao: desc,
-            valorDano: qtdDano,
-            dataHora: new Date()
-        } as Acao;
+        let acao = new Acao(
+        1,                  
+        this,              
+        alvo,               
+        descricaoAtaque,    
+        qtdDano,           
+        new Date()   );
 
         this.registrarAcao(acao);
 

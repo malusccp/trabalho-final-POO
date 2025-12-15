@@ -19,7 +19,14 @@ export class Personagem{
 
     receberDano(valor: number): void{
         this._vida -= valor;
-        if(this._vida <= 0){
+        if(this._vida <= 0){ // Vida não pode ser negativa
+            this._vida = 0;
+        }
+    }
+
+    receberDanoMago(valor: number): void{
+        this._vida -= valor;
+        if(this._vida <= 0){ 
             this._vida = 0;
         }
     }
@@ -55,13 +62,13 @@ export class Personagem{
 
         alvo.receberDano(qtdDano);
 
-        let acao = { id: this._id,
-                origem: this,
-                alvo: alvo,
-                descricao: "Ataque executado",
-                valorDano: qtdDano,
-                dataHora: new Date()
-        } as Acao;
+        let acao = new Acao(
+        1,                  
+        this,              
+        alvo,               
+        "Ataque Executado",    
+        qtdDano,           
+        new Date()   );
 
         this.registrarAcao(acao)
 

@@ -2,7 +2,8 @@ import { Personagem } from "./personagem";
 import { Acao } from "./acao";
 
 export class Arqueiro extends Personagem {
-    protected _ataqueMultiplo: number;
+    private _ataqueMultiplo: number;
+    private _chanceAtaque: number = 0.5
 
     constructor(id: number, nome: string, ataque: number, ataqueMultiplo: number) {
         super(id, nome, ataque);
@@ -20,21 +21,20 @@ export class Arqueiro extends Personagem {
         let qtdDano = this._ataque;
         let descricaoAtaque = "disparo de flecha";
 
-        if (Math.random() > 0.5) {
+        if (Math.random() > this._chanceAtaque) {
             qtdDano *= this._ataqueMultiplo;
             descricaoAtaque = "ataque Múltiplo";
         }
 
         alvo.receberDano(qtdDano);
 
-        let acao = {
-            id: this._id,
-            origem: this,
-            alvo: alvo,
-            descricao: descricaoAtaque,
-            valorDano: qtdDano,
-            dataHora: new Date()
-        } as Acao;
+        let acao = new Acao(
+        1,                  
+        this,              
+        alvo,               
+        descricaoAtaque,    
+        qtdDano,           
+        new Date()   );
 
         this.registrarAcao(acao);
 

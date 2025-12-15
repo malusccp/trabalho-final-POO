@@ -1,6 +1,7 @@
 import { Personagem } from "./personagem";
 import { Arqueiro } from "./arqueiro";
 import { Acao } from "./acao";
+import { Guerreiro } from "./guerreiro";
 
 export class Mago extends Personagem {
     constructor(id: number, nome: string, ataque: number) {
@@ -16,24 +17,32 @@ export class Mago extends Personagem {
         }
 
         let qtdDano = this._ataque;
+        let descricaoAtaque = "ataque mágico"
 
         if (alvo instanceof Arqueiro) {
             qtdDano *= 2;
         }
+        else if (alvo instanceof Guerreiro){
+            alvo.receberDanoMago(qtdDano)
+        }
+        else{
+            alvo.receberDano(qtdDano)
+        }
+
+
 
         alvo.receberDano(qtdDano);
 
         this._vida -= 10; 
         if (this._vida < 0) this._vida = 0;
 
-        let acao = {
-            id: this._id,
-            origem: this,
-            alvo: alvo,
-            descricao: "ataque mágico (Custo: 10 HP)",
-            valorDano: qtdDano,
-            dataHora: new Date()
-        } as Acao;
+        let acao = new Acao(
+        1,                  
+        this,              
+        alvo,               
+        descricaoAtaque,    
+        qtdDano,           
+        new Date()   );
 
         this.registrarAcao(acao);
 
